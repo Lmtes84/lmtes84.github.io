@@ -131,9 +131,9 @@
 <body>
   <script>
     /*PARAMETRIZAÇÃO*/
-    var versao = '2.5.2';
+    var versao = '2.6';
     var paramNumeroMaxPesquisasAbertas = 100; //ABRIRÁ NO MÁXIMO 100 PESQUISAS
-    var paramNumeroMaxAbasAbertas = 5; //ABRIRÁ NO MÁXIMO 5 ABAS
+    var paramNumeroMaxAbasAbertas = 1; //ABRIRÁ NO MÁXIMO 5 ABAS
     var paramCooldownMinutos = 0; //abrirá as abas de 15 em 15 minutos
     var paramNumeroPesquisasAntesCooldown = 0 //NumeroDePesquisasAntesDoCooldown
 
@@ -143,8 +143,7 @@
     var quantidadePesquisasFeitasAcaoBotao = 0; //quantidade de pesquisas efetuadas no click botao
 
 
-    //https://www.bing.com/search?PC=U523&q=teste&FORM=ANAB01
-    var urlPesquisaBing = "https://www.bing.com/search?q="; //url padrão de pesquisa do bing
+    var urlPesquisaBing = "https://www.bing.com/search?pglt=41&PC=U523&q=mySearch&FORM=ANNTA1"; //url padrão de pesquisa do bing
 
     /* VARIAVEIS DO JOGO DA FORCA */
     var jogoForca = ""; //aqui ficará a pesquisa do jogo da forca
@@ -713,6 +712,11 @@
       <div id='divBotoesJogoForca'></div>
     </div>
     <div id="divLogVersao" class="tabcontent" style="display:none">
+		<h3>Versão 2.5</h3>
+		<ol>
+          <li>Criada a função de auto-execução. Utilizar a expressão: "?auto=true </li>
+		  <li>Caso mude a url, altere o valor da variável urlPesquisaBing</li>
+        </ol>
         <h3>Versão 2.5.2</h3>
         <ol>
           <li>Criado o botão "Abrir Abas" para que o usuário possa ajustar as abas mobile e de pc livremente</li>
@@ -767,6 +771,16 @@
     //contadorPesquisasDisponiveis=0;jogosPesquisa = [new Jogo('Madden NFL 07#42354Gamecube#42354Nintendo Wii#42354DS#42354PlayStation 2#42354PlayStation 3#42354Xbox#42354Xbox 360#42354PSP'),new Jogo('Red Dead Redemption#42354PlayStation 3#42354Xbox 360'),new Jogo('Red Dead Redemption 2#42354PlayStation 4#42354Xbox One'),new Jogo('Teste#42354NintendoWii#423543DS')];
     jogosPesquisa.sort(() => Math.random() - 0.5);
     montaJogoForca(true);
+	
+	//obtendo os parametros da autoexecucao
+	const queryString = window.location.search;
+	if(queryString != ""){
+		const params = new URLSearchParams(queryString);
+		const autoExecucao = params.get("auto") == "true";
+		document.getElementById("txtURLPesquisa").value = urlPesquisaBing;
+		importarURLBing();
+		abreAbasNavegador();
+	}
 
   </script>
 
