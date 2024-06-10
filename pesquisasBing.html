@@ -13,6 +13,8 @@
   <meta property="og:type" content="website">
   <meta property="og:description" content="A simple HTML5 Template for new projects.">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
   <style>
     .botaoAcao {
       background-color: #107C10; /* Green */
@@ -144,6 +146,7 @@
 
 
     var urlPesquisaBing = "https://www.bing.com/search?pglt=41&PC=U523&q=mySearch&FORM=ANNTA1"; //url padrão de pesquisa do bing
+    var urlPadraoPaginaRewards = "https://rewards.bing.com/?signin=1";
 
     /* VARIAVEIS DO JOGO DA FORCA */
     var jogoForca = ""; //aqui ficará a pesquisa do jogo da forca
@@ -478,7 +481,14 @@
         html += "</td></tr></table>";
       }
 
-      document.getElementById("divPesquisasEfetuadas").innerHTML = html;
+      if(paramIsErro){
+        document.getElementById("divErros").innerHTML = html;
+      }else{
+        document.getElementById("divPesquisasEfetuadas").innerHTML = html;
+      }
+
+
+
     }
 
     function montaJogoForca(paramSorteiaJogo){
@@ -642,12 +652,18 @@
       window.open(pesquisa, "abaForca");
     }
 
+    function abrirAtividadesDiarias(){
+      var popup = window.open(urlPadraoPaginaRewards, '_blank', '');
+      //setTimeout(function(){ console.log(popup.document.documentElement.outerHTML) }, 2000);
+    }
+
   </script>
   <h1 style="text-align:center"> Pesquisas Bing</h1>
   <center><strong><small>Versão <script>document.write(versao)</script></small></strong></center>
   <center><strong><small><div id="contadorPesquisasDisponiveis"></div></small></strong></center>
   <br>
   <div id = "divPesquisasEfetuadas"></div>
+  <div id = "divErros"></div>
   <div id = "divContadorTempo"></div>
 
   <hr>
@@ -771,7 +787,7 @@
     //contadorPesquisasDisponiveis=0;jogosPesquisa = [new Jogo('Madden NFL 07#42354Gamecube#42354Nintendo Wii#42354DS#42354PlayStation 2#42354PlayStation 3#42354Xbox#42354Xbox 360#42354PSP'),new Jogo('Red Dead Redemption#42354PlayStation 3#42354Xbox 360'),new Jogo('Red Dead Redemption 2#42354PlayStation 4#42354Xbox One'),new Jogo('Teste#42354NintendoWii#423543DS')];
     jogosPesquisa.sort(() => Math.random() - 0.5);
     montaJogoForca(true);
-	
+
 	//obtendo os parametros da autoexecucao
 	const queryString = window.location.search;
 	if(queryString != ""){
@@ -780,9 +796,9 @@
 		document.getElementById("txtURLPesquisa").value = urlPesquisaBing;
 		importarURLBing();
 		abreAbasNavegador();
+    abrirAtividadesDiarias();
 	}
 
   </script>
-
 </body>
 </html>
