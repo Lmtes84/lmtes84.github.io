@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="#">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Anúncio de Live na Twitch</title>
+  <meta name="description" content="Pesquisador Automático Bing">
+  <meta name="author" content="SitePoint">
+
+  <meta property="og:title" content="Live na Twitch">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Live na Twitch">
+
+
+</head>
+
+<body>
+  <script>
+    function gerarTextoAnuncio(){
+      jogo = document.getElementById("jogo");
+      hashtags = document.getElementById("hashtags");
+      divConteudo = document.getElementById("divConteudo");
+
+      texto = "<br><br><hr>";
+      texto += "Bora conferir a gente jogando " +jogo.value+ " enquanto batemos um papo?"
+      texto +="<br><br>https://www.twitch.tv/nintendoloversbrasil";
+	  texto +="<br><br>https://youtube.com/@NintendoLovers";
+      texto += "<br><br>" +hashtags.value;
+      divConteudo.innerHTML = texto;
+    }
+
+  </script>
+  <h1 style="text-align:center">Anúncio de Live na Twitch</h1>
+  <table style="width:100%;">
+    <tr>
+      <td style="width:150px;border:2px solid">Nome do Jogo:
+      </td>
+      <td style="border:2px solid"><input id="jogo" type="text" size="100px"/>
+      </td>
+    </tr>
+    <tr>
+      <td style="width:150px;border:2px solid">Hashtags
+      </td>
+      <td style="border:2px solid"><input id="hashtags" type="text" size="100px" value="#nintendoSwitch #jogadaCasual #twitch #nintendo"/>
+      </td>
+    </tr>
+    <tr>
+      <td style="width:150px;border:2px solid">Ações
+      </td>
+      <td style="border:2px solid"><button type="button" onClick="gerarTextoAnuncio()">Criar anúncio</button>
+      </td>
+    </tr>
+  </table>
+  <div id="divConteudo"/>
+
+
+</body>
+</html>
